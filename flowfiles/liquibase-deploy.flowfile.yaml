@@ -5,7 +5,7 @@
 ## A flow file can have one or more stages, each with multiple "actions", 
 ## or your flow file can have multiple stages with fewer actions in each stage.
 
-## Call this flow using: liquibase flow --flow-file=flows/liquibase-deploy.flowfile.yaml
+## Call this flow using: liquibase flow --flow-file=flowfiles/liquibase-deploy.flowfile.yaml
 
 stages:
 
@@ -13,7 +13,7 @@ stages:
     actions:
       - type: liquibase
         command: checks run
-        cmdArgs: {checks-scope: changelog}
+        cmdArgs: {checks-scope: changelog, checks-settings-file: "policychecks/liquibase.checks-settings.conf", auto-update: "ON" }
         globalArgs: { reports-name: "checks-report-deploy-changelog.html" }
 
   Status:
@@ -31,13 +31,12 @@ stages:
     actions:
       - type: liquibase
         command: update
-        globalArgs: { reports-name: "deploy-report.html" }
 
   Checks-Database:
     actions:
       - type: liquibase
         command: checks run
-        cmdArgs: {checks-scope: database}
+        cmdArgs: {checks-scope: database, checks-settings-file: "policychecks/liquibase.checks-settings.conf", auto-update: "ON" }
         globalArgs: { reports-name: "checks-report-deploy-database.html" }
 
 ## The endStage ALWAYS RUNS. 
