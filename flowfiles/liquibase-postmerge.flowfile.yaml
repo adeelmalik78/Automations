@@ -29,7 +29,7 @@ stages:
     actions:
       - type: liquibase
         command: checks run
-        cmdArgs: {checks-scope: database, checks-settings-file: "policychecks/liquibase.checks-settings.conf", auto-update: "ON" }
+        cmdArgs: {checks-scope: database, checks-settings-file: "policychecks/liquibase.checks-settings.conf", auto-update: "ON", changeset-filter: "pending" }
         globalArgs: { reports-name: "checks-report-database.html" }
 
 ## The endStage ALWAYS RUNS. 

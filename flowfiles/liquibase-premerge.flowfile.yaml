@@ -13,5 +13,5 @@ stages:
     actions:
       - type: liquibase
         command: checks run
-        cmdArgs: {checks-scope: changelog, checks-settings-file: "policychecks/liquibase.checks-settings.conf", auto-update: "ON" }
+        cmdArgs: {checks-scope: changelog, checks-settings-file: "policychecks/liquibase.checks-settings.conf", auto-update: "ON", changeset-filter: "pending" }
         globalArgs: { reports-name: "checks-report-premerge.html" }
